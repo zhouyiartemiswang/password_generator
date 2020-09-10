@@ -9,7 +9,7 @@ var isSpecialChar = false;
 
 // Prompt criteria for user selection
 function passwordCriteria() {
-  
+
   var resultListCriteria = false;
   var firstMessage = "Please select from the following criteria to include in password: \n-Length between 8-128 characters\n-Lowercase\n-Uppercase\n-Numeric\n-Special characters";
 
@@ -32,15 +32,16 @@ function passwordCriteria() {
     isNumeric = confirm("Numeric");
     isSpecialChar = confirm("Special Character");
   }
-  // console.log(lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar);
+
+  // Call writePassword()
   writePassword();
 
-  // return lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar;
 }
 
 // Generate password according to user choices
 function generatePassword() {
-  
+
+  // Constants declaration: start and end ASCII numbers of different types of character
   const specialCharStart1 = 32;
   const specialCharEnd1 = 47;
   const specialCharStart2 = 58;
@@ -56,26 +57,46 @@ function generatePassword() {
   const numStart = 48;
   const numEnd = 57;
 
+  // Define an empty array for hosting all character needed for password generation
   var charPool = [];
-  
+
+  // If user select lowercase, then add them to character pool
   if (isLowerCase === true) {
-    generateArray();
+    charPool = charPool.concat(generateArray(lowerStart, lowerEnd));
   }
 
+  // If user select uppercase, then add them to character pool
+  if (isUpperCase === true) {
+    charPool = charPool.concat(generateArray(upperStart, upperEnd));
+  }
 
-  console.log(lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar);
+  // If user select numeric, then add them to character pool
+  if (isNumeric === true) {
+    charPool = charPool.concat(generateArray(numStart, numEnd));
+  }
+
+  // If user select special character, then add them to character pool
+  if (isSpecialChar === true) {
+    charPool = charPool.concat(generateArray(specialCharStart1, specialCharEnd1), generateArray(specialCharStart2, specialCharEnd2), generateArray(specialCharStart3, specialCharEnd3), generateArray(specialCharStart4, specialCharEnd4));
+  }
+
+  // for (i = 0; i < charPool.length; i++) {
+  //   console.log(charPool[i]);
+  // }
+  // console.log(lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar);
+
+  // return password;
 }
 
 // Generate array based on ASCII number input
 function generateArray(startNum, endNum) {
-  var asciiNum = startNum;
   var addArray = [];
 
-  while (asciiNum <= endNum) {
-    addArray[startNum - asciiNum] = String.fromCharCode(startNum);
-    console.log(addArray[startNum - asciiNum]);
-    startNum++;
+  for (i = startNum; i <= endNum; i++) {
+    addArray[i - startNum] = String.fromCharCode(i);
   }
+
+  return addArray;
 }
 
 // Write password to the #password input
