@@ -28,4 +28,6 @@ Click the red _Generate Password_ button to generate a password.
 
 * `style.css`
 
+* `screenshot.png`
+
 * `README.md`

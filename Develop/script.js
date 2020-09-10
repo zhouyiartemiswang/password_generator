@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Declare variables to be used by both functions, passwordCriteria() and generatePassword()
+// Variables used by both functions, passwordCriteria() and generatePassword()
 var lengthPassword = 0;
 var isLowerCase = false;
 var isUpperCase = false;
@@ -28,10 +28,10 @@ function passwordCriteria() {
   // Take user choice of character type
   while ((isLowerCase === false) && (isUpperCase === false) && (isNumeric === false) && (isSpecialChar === false)) {
     alert("Please choose at least one type of character.");
-    isLowerCase = confirm("Lowercase");
-    isUpperCase = confirm("Uppercase");
-    isNumeric = confirm("Numeric");
-    isSpecialChar = confirm("Special Character");
+    isLowerCase = confirm("Click OK to select lowercase characters.");
+    isUpperCase = confirm("Click OK to select uppercase characters.");
+    isNumeric = confirm("Click OK to select numeric characters.");
+    isSpecialChar = confirm("Click OK to select special characters.");
   }
 
   // Call writePassword()
@@ -49,7 +49,7 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// generateBtn.addEventListener("click", writePassword);
 
 // Generate password according to user choices
 function generatePassword() {
