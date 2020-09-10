@@ -8,36 +8,8 @@ var isUpperCase = false;
 var isNumeric = false;
 var isSpecialChar = false;
 
-// Prompt criteria for user selection
-function passwordCriteria() {
-
-  var resultListCriteria = false;
-  var firstMessage = "Please select from the following criteria to include in password: \n-Length between 8-128 characters\n-Lowercase\n-Uppercase\n-Numeric\n-Special characters";
-
-  // First message to user with a list of password criteria
-  while (resultListCriteria === false) {
-    resultListCriteria = confirm(firstMessage);
-  }
-
-  // Take user input of password length
-  lengthPassword = prompt("Please enter length of password (must be between 8 and 128 characters).");
-  while (lengthPassword > 128 || lengthPassword < 8) {
-    lengthPassword = prompt("Password length must be between 8 and 128 characters. Please enter again.");
-  }
-
-  // Take user choice of character type
-  while ((isLowerCase === false) && (isUpperCase === false) && (isNumeric === false) && (isSpecialChar === false)) {
-    alert("Please choose at least one type of character.");
-    isLowerCase = confirm("Click OK to select lowercase characters.");
-    isUpperCase = confirm("Click OK to select uppercase characters.");
-    isNumeric = confirm("Click OK to select numeric characters.");
-    isSpecialChar = confirm("Click OK to select special characters.");
-  }
-
-  // Call writePassword()
-  writePassword();
-
-}
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
@@ -45,11 +17,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  resetGenerator();
 }
-
-// Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
 
 // Generate password according to user choices
 function generatePassword() {
@@ -73,6 +42,7 @@ function generatePassword() {
   var charPool = []; // Empty array for storing all character needed for password generation
   var passwordArray = []; // Empty array for storing generated password
 
+  passwordCriteria();
   // If user select lowercase, then add them to character pool
   if (isLowerCase === true) {
     charPool = charPool.concat(generateArray(lowerStart, lowerEnd));
@@ -102,6 +72,34 @@ function generatePassword() {
   return passwordArray.join("");
 }
 
+// Prompt criteria for user selection
+function passwordCriteria() {
+
+  var resultListCriteria = false;
+  var firstMessage = "Please select from the following criteria to include in password: \n-Length between 8-128 characters\n-Lowercase\n-Uppercase\n-Numeric\n-Special characters";
+
+  // First message to user with a list of password criteria
+  while (resultListCriteria === false) {
+    resultListCriteria = confirm(firstMessage);
+  }
+
+  // Take user input of password length
+  lengthPassword = prompt("Please enter length of password (must be between 8 and 128 characters).");
+  while (lengthPassword > 128 || lengthPassword < 8) {
+    lengthPassword = prompt("Password length must be between 8 and 128 characters. Please enter again.");
+  }
+
+  // Take user choice of character type
+  while ((isLowerCase === false) && (isUpperCase === false) && (isNumeric === false) && (isSpecialChar === false)) {
+    alert("Please choose at least one type of character.");
+    isLowerCase = confirm("Click OK to select lowercase characters.");
+    isUpperCase = confirm("Click OK to select uppercase characters.");
+    isNumeric = confirm("Click OK to select numeric characters.");
+    isSpecialChar = confirm("Click OK to select special characters.");
+  }
+
+}
+
 // Generate array based on ASCII number input
 function generateArray(startNum, endNum) {
   var addArray = [];
@@ -111,4 +109,13 @@ function generateArray(startNum, endNum) {
   }
 
   return addArray;
+}
+
+// Reset all global variables to initial values, so everything will start over when user clicks button the second time
+function resetGenerator() {
+  lengthPassword = 0;
+  isLowerCase = false;
+  isUpperCase = false;
+  isNumeric = false;
+  isSpecialChar = false;
 }
