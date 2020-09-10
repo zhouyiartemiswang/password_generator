@@ -32,17 +32,60 @@ function passwordCriteria() {
     isNumeric = confirm("Numeric");
     isSpecialChar = confirm("Special Character");
   }
+  // console.log(lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar);
+  writePassword();
 
+  // return lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar;
+}
+
+// Generate password according to user choices
+function generatePassword() {
+  
+  const specialCharStart1 = 32;
+  const specialCharEnd1 = 47;
+  const specialCharStart2 = 58;
+  const specialCharEnd2 = 64;
+  const specialCharStart3 = 91;
+  const specialCharEnd3 = 96;
+  const specialCharStart4 = 123;
+  const specialCharEnd4 = 126;
+  const lowerStart = 97;
+  const lowerEnd = 122;
+  const upperStart = 65;
+  const upperEnd = 90;
+  const numStart = 48;
+  const numEnd = 57;
+
+  var charPool = [];
+  
+  if (isLowerCase === true) {
+    generateArray();
+  }
+
+
+  console.log(lengthPassword, isLowerCase, isUpperCase, isNumeric, isSpecialChar);
+}
+
+// Generate array based on ASCII number input
+function generateArray(startNum, endNum) {
+  var asciiNum = startNum;
+  var addArray = [];
+
+  while (asciiNum <= endNum) {
+    addArray[startNum - asciiNum] = String.fromCharCode(startNum);
+    console.log(addArray[startNum - asciiNum]);
+    startNum++;
+  }
 }
 
 // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+  passwordText.value = password;
 
-// }
+}
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
