@@ -88,7 +88,7 @@ function passwordCriteria() {
 
   // Check user input, if it's not an integer, then prompt a message
   while (!isInt(lengthPassword)) {
-    lengthPassword = prompt("Please enter an valid integer.");
+    lengthPassword = prompt("Please enter a valid integer.");
   }
 
   // Check user input, if it's not between 8 and 128, then prompt a message
