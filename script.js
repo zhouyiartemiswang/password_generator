@@ -91,7 +91,7 @@ function passwordCriteria() {
 
   // Take user choice of character type
   while ((isLowerCase === false) && (isUpperCase === false) && (isNumeric === false) && (isSpecialChar === false)) {
-    alert("Please choose at least one type of character.");
+    alert("Please choose at least one of the following characters.");
     isLowerCase = confirm("Click OK to select lowercase characters.");
     isUpperCase = confirm("Click OK to select uppercase characters.");
     isNumeric = confirm("Click OK to select numeric characters.");
