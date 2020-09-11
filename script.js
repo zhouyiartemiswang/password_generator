@@ -67,7 +67,7 @@ function generatePassword() {
   for (i = 0; i < lengthPassword; i++) {
     passwordArray[i] = charPool[Math.floor(Math.random() * charPool.length)];
   }
-  
+
   // Return password array as a string
   return passwordArray.join("");
 }
@@ -85,6 +85,13 @@ function passwordCriteria() {
 
   // Take user input of password length
   lengthPassword = prompt("Please enter length of password (must be between 8 and 128 characters).");
+
+  // Check user input, if it's not an integer, then prompt a message
+  while (!isInt(lengthPassword)) {
+    lengthPassword = prompt("Please enter an valid integer.");
+  }
+
+  // Check user input, if it's not between 8 and 128, then prompt a message
   while (lengthPassword > 128 || lengthPassword < 8) {
     lengthPassword = prompt("Password length must be between 8 and 128 characters. Please enter again.");
   }
@@ -98,6 +105,11 @@ function passwordCriteria() {
     isSpecialChar = confirm("Click OK to select special characters.");
   }
 
+}
+
+// Function isInt() takes a value input and returns true if it's integer
+function isInt(value) {
+  return !isNaN(value) && parseInt(value) === parseFloat(value) && !isNaN(parseInt(value, 10));
 }
 
 // Generate array based on ASCII number input
