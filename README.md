@@ -31,3 +31,7 @@ Click the red _Generate Password_ button to generate a password.
 * `screenshot.png`
 
 * `README.md`
+
+
+## Deployed Link
+https://zhouyiartemiswang.github.io/password_generator/
